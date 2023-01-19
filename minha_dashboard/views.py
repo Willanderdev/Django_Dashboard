@@ -8,6 +8,8 @@ def home(request):
     return render(request, 'home.html')
 
 def retorna_total_vendido(request):
+    
+    # o aggregate transforma os dados em um dicionario e soma todos os dados do dicionario com o metodo Sum, ele soma todos os dados da coluna total
     total = Vendas.objects.all().aggregate(Sum('total'))['total__sum']
     if request.method == "GET":
         return JsonResponse({'total': total})

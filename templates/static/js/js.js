@@ -39,9 +39,9 @@ function renderiza_faturamento_mensal(url){
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                labels: data.labels,
                 datasets: [{
-                    label: data.labels,
+                    label: ['Faturamento'],
                     data: data.data,
                     backgroundColor: cores_faturamento_mensal[0],
                     borderColor: cores_faturamento_mensal[1],

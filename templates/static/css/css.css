@@ -1,10 +1,10 @@
-body{
-    background-color: #0D0E11;
-    color: white;
+body {
+    background: linear-gradient(45deg, #084177, #3c423a, #30080b, #242322, #161515, #EFA3C8, #FFEA11);
+    color: rgb(30, 87, 58);
 
 }
 
-.informacoes_basicas{
+.informacoes_basicas {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,19 +13,29 @@ body{
     margin-right: auto;
     border: 1px solid transparent;
 
-    border-image: linear-gradient(to right top, #bd31c4, #8e3bb0, #643b97, #413579, #282c59);
+    border-image: linear-gradient(to right top, #e0dae0, #8e3bb0, #643b97, #413579, #d0d1e0);
 
     border-image-slice: 1;
     margin-left: 1%;
-    
+
 
 
 }
 
-.icone{
-    color: #C040B9;
+.icone {
+    color: #2711a5;
     width: 40px;
- 
 
 }
 
+footer .copi {
+    position: relative;
+}
+
+footer .copi1 {
+    color: #bd31c4;
+    position: absolute;
+    right: 15;
+    bottom: 1px;
+    
+}
