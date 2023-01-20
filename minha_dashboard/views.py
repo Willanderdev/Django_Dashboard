@@ -1,11 +1,37 @@
-from django.http.response import HttpResponse, JsonResponse
+from django.http.response import JsonResponse
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
 from django.shortcuts import render
 from .models import Produto, Vendas, Vendedor
 from datetime import datetime
 from django.db.models import Sum
+from .forms import FormProduto, FormVendas, FormVendedor
 
 def home(request):
-    return render(request, 'home.html')
+    prod = FormProduto
+    vend = FormVendas
+    vendedor = FormVendedor
+    context = {'prod': prod, 'vend': vend, 'vendedor': vendedor}
+    return render(request, 'home.html', context)
+
+
+class produto(CreateView):
+    form_class = FormProduto
+    success_url = reverse_lazy('home')
+    template_name = 'produto.html'
+    
+
+class Venda(CreateView):
+    form_class = FormVendas
+    success_url = reverse_lazy('home')
+    template_name = 'vendas.html'
+    
+
+class Vendedores(CreateView):
+    form_class = FormVendedor
+    success_url = reverse_lazy('home')
+    template_name = 'vendedor.html'
+    
 
 def retorna_total_vendido(request):
     

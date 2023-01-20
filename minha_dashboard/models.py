@@ -7,6 +7,11 @@ class Produto(models.Model):
 
     def __str__(self) -> str:
         return self.nome
+    
+    def to_dict(self):
+        return{
+            'nome':self.nome,
+        }
 
 class Vendedor(models.Model):
     nome = models.CharField(max_length=50)

@@ -1,5 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    background: linear-gradient(45deg, #084177, #3c423a, #30080b, #242322, #161515, #EFA3C8, #FFEA11);
+    background: linear-gradient(45deg, #084177, #3c423a, #30080b, #242322, #161515);
     color: rgb(30, 87, 58);
 
 }
@@ -37,5 +42,36 @@ footer .copi1 {
     position: absolute;
     right: 15;
     bottom: 1px;
+
+}
+
+.header {
+
+    margin-top: 2rem;
+    position: relative;
+}
+
+.header .home {
     
+    padding-left: 5rem;
+}
+
+
+.header .menu {
+    padding-right: 5rem;
+    text-align: right;
+    position: absolute;
+
+}
+
+.header ul {
+    list-style: none;
+    display: inline-block;
+
+}
+
+.header li {
+    /* dispor os li´s de lado */
+    display: inline-block;
+    margin: 0 0 0 15px;
 }

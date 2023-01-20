@@ -10,6 +10,43 @@
 
 
 {% block 'body' %}
+
+<div class="container-fluid header">
+    <div class="row">
+        <div class="home">
+            <ul>
+                <a href="{% url 'logout' %}"><li>{{user}}</li></a>
+            </ul>
+          
+        </div>
+
+        <div class="menu">
+            {%if user.is_authenticated%}
+
+            <ul>
+                <a href="{% url 'logout' %}">
+                    <li>{{user}}</li>
+                </a>
+                <a class="btn btn-link" data-toggle="modal" data-target="#produtoModal">
+                    <li>Produtos</li>
+                </a>
+                <a class="btn btn-link" data-toggle="modal" data-target="#vendaModal">
+                    <li>Vendas</li>
+                </a>
+                <a class="btn btn-link" data-toggle="modal" data-target="#vendedorModal">
+                    <li>Vendedores</li>
+                </a>
+            </ul>
+            {% else %}
+            <a href="#" class="btn btn-link" data-toggle="modal" data-target="#loginModal">
+                <li>Login</li>
+            </a>
+            {%endif%}
+        </div>
+
+    </div>
+</div>
+<br>
 <div class="container">
     <br>
     <div class="row">
@@ -100,13 +137,19 @@
             <p>Copyright © 2022 Willander Vitorino</p>
         </div>
     </div>
-
-
-
-
     <br>
 
+
+
 </footer>
+
+
+{% include "produto.html" %}
+{% include "vendas.html" %}
+{% include "vendedor.html" %}
+{% include "registration/login.html" %}
+
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{% static 'js/js.js' %}"></script>
 
@@ -118,8 +161,23 @@
         renderiza_despesas_mensal()
         renderiza_produtos_mais_vendidos('{% url "relatorio_produtos" %}')
         renderiza_funcionario_mes('{% url "relatorio_funcionario" %}')
-
-
     }
+
+    $('form').on('submit', function (e) {
+        let url = '{% url "produto" %}'
+        let postData = $('form').serialize();
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: postData,
+            success: function (response) {
+                console.log(response.data)
+            }
+
+        })
+
+    });
 </script>
+
+
 {% endblock %}

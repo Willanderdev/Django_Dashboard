@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'minha_dashboard'
+    
+    'minha_dashboard',
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +130,13 @@ STATIC_ROOT = os.path.join('static')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# login redirect
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = 'login'
+# AUTH_USER_MODEL = 'accounts.User'
+# AUTHENTICATION_BACKENDS = (
+#     'django.contrib.auth.backends.ModelBackend',
+#     'accounts.backends.ModelBackend',
+# )

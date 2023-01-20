@@ -1,24 +1,57 @@
-function gera_cor(qtd=1){
+// set up jQuery ajax object to always send CSRF token in headers
+// https://docs.djangoproject.com/en/2.2/ref/csrf/#ajax
+var getCookie = function (name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+var csrfSafeMethod = function (method) {
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+
+$.ajaxSetup({
+    beforeSend: function (xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+        }
+    }
+});
+
+
+
+
+
+function gera_cor(qtd = 1) {
     var bg_color = []
     var border_color = []
-    for(let i = 0; i < qtd; i++){
+    for (let i = 0; i < qtd; i++) {
         let r = Math.random() * 255;
         let g = Math.random() * 255;
         let b = Math.random() * 255;
         bg_color.push(`rgba(${r}, ${g}, ${b}, ${0.2})`)
         border_color.push(`rgba(${r}, ${g}, ${b}, ${1})`)
     }
-    
+
     return [bg_color, border_color];
-    
+
 }
 
-function renderiza_total_vendido(url){  
+function renderiza_total_vendido(url) {
     fetch(url, {
         method: 'get',
-    }).then(function(result){
+    }).then(function (result) {
         return result.json()
-    }).then(function(data){
+    }).then(function (data) {
         document.getElementById('faturamento_total').innerHTML = data.total
     })
 
@@ -26,16 +59,16 @@ function renderiza_total_vendido(url){
 
 
 
-function renderiza_faturamento_mensal(url){
+function renderiza_faturamento_mensal(url) {
 
     fetch(url, {
         method: 'get',
-    }).then(function(result){
+    }).then(function (result) {
         return result.json()
-    }).then(function(data){
+    }).then(function (data) {
 
         const ctx = document.getElementById('faturamento_mensal').getContext('2d');
-        var cores_faturamento_mensal = gera_cor(qtd=12)
+        var cores_faturamento_mensal = gera_cor(qtd = 12)
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -61,15 +94,15 @@ function renderiza_faturamento_mensal(url){
     })
 
 
-    
+
 
 }
 
 
 
-function renderiza_despesas_mensal(){
+function renderiza_despesas_mensal() {
     const ctx = document.getElementById('despesas_mensal').getContext('2d');
-    var cores_despesas_mensal = gera_cor(qtd=12)
+    var cores_despesas_mensal = gera_cor(qtd = 12)
     const myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -82,20 +115,20 @@ function renderiza_despesas_mensal(){
                 borderWidth: 0.2
             }]
         },
-        
+
     });
 }
 
-function renderiza_produtos_mais_vendidos(url){
+function renderiza_produtos_mais_vendidos(url) {
 
     fetch(url, {
         method: 'get',
-    }).then(function(result){
+    }).then(function (result) {
         return result.json()
-    }).then(function(data){
-        
+    }).then(function (data) {
+
         const ctx = document.getElementById('produtos_mais_vendidos').getContext('2d');
-        var cores_produtos_mais_vendidos = gera_cor(qtd=4)
+        var cores_produtos_mais_vendidos = gera_cor(qtd = 4)
         const myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -108,26 +141,26 @@ function renderiza_produtos_mais_vendidos(url){
                     borderWidth: 1
                 }]
             },
-            
+
         });
 
 
     })
-  
+
 }
 
-function renderiza_funcionario_mes(url){
+function renderiza_funcionario_mes(url) {
 
 
 
     fetch(url, {
         method: 'get',
-    }).then(function(result){
+    }).then(function (result) {
         return result.json()
-    }).then(function(data){
-        
+    }).then(function (data) {
+
         const ctx = document.getElementById('funcionarios_do_mes').getContext('2d');
-        var cores_funcionarios_do_mes = gera_cor(qtd=4)
+        var cores_funcionarios_do_mes = gera_cor(qtd = 4)
         const myChart = new Chart(ctx, {
             type: 'polarArea',
             data: {
@@ -139,9 +172,8 @@ function renderiza_funcionario_mes(url){
                     borderWidth: 1
                 }]
             },
-            
-        });
 
+        });
 
     })
 
