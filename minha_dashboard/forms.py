@@ -26,11 +26,10 @@ class FormVendedor(forms.ModelForm):
 
 
 class FormVendas(forms.ModelForm):
+    
     class Meta:
         model = Vendas
+
         fields = ['nome_produto', 'vendedor', 'total', 'data']
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for fields_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
+  

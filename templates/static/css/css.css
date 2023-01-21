@@ -16,7 +16,7 @@ body {
     background-color: #181C24;
     height: 100px;
     margin-right: auto;
-    border: 1px solid transparent;
+    
 
     border-image: linear-gradient(to right top, #e0dae0, #8e3bb0, #643b97, #413579, #d0d1e0);
 
@@ -46,28 +46,27 @@ footer .copi1 {
 }
 
 .header {
-
+   
     margin-top: 2rem;
     position: relative;
 }
 
-.header .home {
-    
-    padding-left: 5rem;
-}
-
 
 .header .menu {
+    list-style: none;
     padding-right: 5rem;
     text-align: right;
     position: absolute;
 
 }
+.header .menu a {
+    text-decoration: none;
+
+}
 
 .header ul {
     list-style: none;
-    display: inline-block;
-
+   
 }
 
 .header li {
@@ -75,3 +74,11 @@ footer .copi1 {
     display: inline-block;
     margin: 0 0 0 15px;
 }
+
+.logout{
+    
+    position: absolute;
+    top: 30;
+    left: 200;
+}
+

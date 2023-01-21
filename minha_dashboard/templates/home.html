@@ -13,20 +13,34 @@
 
 <div class="container-fluid header">
     <div class="row">
-        <div class="home">
+        <div>
             <ul>
-                <a href="{% url 'logout' %}"><li>{{user}}</li></a>
+                {% if user.is_authenticated %}
+
+                <li>
+                    <h4>{{user}}</h4>
+                </li>
+
+                {% else %}
+                <li>
+                    <h4>Dashboard</h4>
+                </li>
+                {%endif%}
             </ul>
-          
+
         </div>
 
-        <div class="menu">
-            {%if user.is_authenticated%}
 
+
+
+        <div class="menu">
+           
+            {% if user.is_authenticated %}
+            <div class="logout">
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
             <ul>
-                <a href="{% url 'logout' %}">
-                    <li>{{user}}</li>
-                </a>
+               
                 <a class="btn btn-link" data-toggle="modal" data-target="#produtoModal">
                     <li>Produtos</li>
                 </a>
@@ -109,10 +123,8 @@
     </div>
 
     <div class="row">
-
         <div class="col-md">
             <br>
-
             <h1>Produtos mais vendidos:</h1>
             <br>
             <canvas id="produtos_mais_vendidos" width="250" height="200"></canvas>
@@ -124,9 +136,7 @@
             <br>
             <canvas id="funcionarios_do_mes" width="250" height="200"></canvas>
         </div>
-
     </div>
-
 
 </div>
 <br>
@@ -138,9 +148,6 @@
         </div>
     </div>
     <br>
-
-
-
 </footer>
 
 
@@ -152,7 +159,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{% static 'js/js.js' %}"></script>
-
 
 <script>
     window.onload = function (e) {

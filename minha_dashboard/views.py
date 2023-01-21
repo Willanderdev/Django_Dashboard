@@ -22,10 +22,18 @@ class produto(CreateView):
     
 
 class Venda(CreateView):
+    model = Vendas
     form_class = FormVendas
     success_url = reverse_lazy('home')
     template_name = 'vendas.html'
     
+    def form_valid(self, form):
+        # Adicionar usuário logado como user
+        form.instance.user = self.request.user
+        
+        # Chama o comportamento de validação do formulário da superclasse
+        return super(Venda, self).form_valid(form)
+
 
 class Vendedores(CreateView):
     form_class = FormVendedor
