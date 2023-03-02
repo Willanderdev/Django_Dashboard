@@ -102,6 +102,9 @@ WSGI_APPLICATION = 'dashboard.wsgi.application'
 #     }
 # }
 
+
+# postgresql: // postgres: wuMzpU9ZzFIw5NX9rLxo@containers-us-west-111.railway.app: 5801/railway
+
 # postgresql: // postgres: ElPF3FpS9ftr4Vy6jh86@containers-us-west-111.railway.app: 5801/railway
 
 # postgresql Railway
@@ -110,7 +113,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'ElPF3FpS9ftr4Vy6jh86',
+        'PASSWORD': 'wuMzpU9ZzFIw5NX9rLxo',
         'HOST': 'containers-us-west-111.railway.app',
         'PORT': '5801',
     }
